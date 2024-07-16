@@ -11,52 +11,57 @@ CREATE TABLE Authors (
     BirthYear INT
 );
 
-
-CREATE TABLE Books (
+ CREATE TABLE Books (
     BookID INT PRIMARY KEY,
     Title VARCHAR(100),
     AuthorID INT,
     PublishedYear INT,
     CopiesAvailable INT,
     BookCategory VARCHAR(50),
-    CONSTRAINT FK_Authors_Books FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
 );
 
+ INSERT INTO Authors VALUES 
+(1, 'George', 'Orwell', 1903),
+(2, 'Jane', 'Austen', 1775),
+(3, 'Mark', 'Twain', 1835),
+(4, 'J.K.', 'Rowling', 1965),
+(5, 'F. Scott', 'Fitzgerald', 1896);
 
-INSERT INTO Authors (AuthorID, FirsName, LastName, BirthYear) VALUES (1, 'George', 'Orwell', 1903), (2, 'J.K.', 'Rowling', 1965), (3, 'J.R.R.', 'Tolkien', 1892), (4, 'Agatha', 'Christie', 1890), (5, 'Stephen', 'King', 1947);
+ INSERT INTO Books  VALUES 
+(1, '1984', 1, 1949, 12, 'Dystopian'),
+(2, 'Pride and Prejudice', 2, 1813, 5, 'Romance'),
+(3, 'Adventures of Huckleberry Finn', 3, 1884, 8, 'Adventure'),
+(4, 'Harry Potter and the Sorcerers Stone', 4, 1997, 15, 'Fantasy'),
+(5, 'The Great Gatsby', 5, 1925, 7, 'Classic');
 
 
-INSERT INTO Books (BookID, Title, AuthorID, PublishedYear, CopiesAvailable, BookCategory) VALUES (1, '1984', 1, 1949, 10, 'Dystopian'), (2, 'Harry Potter and the Philosopher''s Stone', 2, 1997, 5, 'Fantasy'), (3, 'The Hobbit', 3, 1937, 7, 'Fantasy'), (4, 'Murder on the Orient Express', 4, 1934, 3, 'Mystery'), (5, 'The Shining', 5, 1977, 2, 'Horror');
+--Q1 : 
 
+SELECT * FROM Books;
+SELECT * FROM Authors;
 
+--Q2 : 
 
-SELECT B.BookID, B.Title, A.FirsName +  A.LastName AS AuthorName, B.PublishedYear, B.CopiesAvailable, B.BookCategory
-FROM Books B JOIN Authors A ON B.AuthorID = A.AuthorID;
-
-
-
-SELECT TOP 1 Title, CopiesAvailable FROM Books ORDER BY CopiesAvailable DESC;
+ SELECT TOP 1 Title, CopiesAvailable FROM Books ORDER BY CopiesAvailable DESC;
 
 
 
 SELECT TOP 1 Title, CopiesAvailable FROM Books ORDER BY CopiesAvailable ASC;
 
 
-SELECT AVG(PublishedYear) AS AveragePublicationYear FROM Books;
+--Q3 : 
+SELECT AVG(PublishedYear) AS AveragePublicationYear  FROM Books;
 
-
+--Q4 : 
 
 SELECT COUNT(*) AS TotalBooksCount FROM Books;
 
-
+--Q5 : 
 
 TRUNCATE TABLE Books;
 
 
-
-ALTER TABLE Books DROP CONSTRAINT FK_Authors_Books;
-
-
+--Q6: 
 
 DROP TABLE Authors;
-
