@@ -11,7 +11,7 @@ create table TeacherDetails (
 ID int primary key,
 Email varchar(30),
 PhoneNumber varchar(15),
-T_ID int,
+T_ID int unique,
 foreign key (T_ID) references Teachers (ID)
 );
 
@@ -77,4 +77,3 @@ insert into Student_Courses  VALUES (2, 2);
 insert into Student_Courses  VALUES (3, 3);
 insert into Student_Courses  VALUES (4, 4);
 insert into Student_Courses  VALUES (5, 5);
-

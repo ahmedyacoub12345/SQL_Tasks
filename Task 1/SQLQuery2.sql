@@ -5,7 +5,7 @@ USE Library;
 
 
 CREATE TABLE Authors (
-    AuthorID INT PRIMARY KEY,
+    AuthorID INT PRIMARY KEY ,
     FirstName VARCHAR(50),
     LastName VARCHAR(50),
     BirthYear INT
@@ -18,7 +18,7 @@ CREATE TABLE Authors (
     PublishedYear INT,
     CopiesAvailable INT,
     BookCategory VARCHAR(50),
-    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID)
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID) on delete cascade
 );
 
  INSERT INTO Authors VALUES 
@@ -60,8 +60,11 @@ SELECT COUNT(*) AS TotalBooksCount FROM Books;
 --Q5 : 
 
 TRUNCATE TABLE Books;
+TRUNCATE TABLE Authors;
 
 
 --Q6: 
 
 DROP TABLE Authors;
+
+
