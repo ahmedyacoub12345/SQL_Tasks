@@ -84,15 +84,26 @@ select * from Users;
 
 select * from CategoryBooks;
 
-
+--one to many
 select Authors.Name ,Books.Name from Authors join Books on Authors.ID = Books.A_ID;
 select * from Authors right join Books on Authors.ID = Books.A_ID;
 select Authors.ID ,Authors.Name ,  Books.ID,Books.Name from Authors left join Books on Authors.ID = Books.A_ID;
 select * from Authors full join Books on Authors.ID = Books.A_ID;
 
+--many to many
+select * from Books 
+inner join CategoryBooks on   Books.A_ID=CategoryBooks.B_ID
+inner join Categories on Categories.ID =CategoryBooks.C_ID;
 
-select * from CategoryBooks inner join Books on   Books.A_ID=CategoryBooks.B_ID;
-select * from CategoryBooks right join Books on   Books.A_ID=CategoryBooks.B_ID;
-select * from CategoryBooks left join Books on   Books.A_ID=CategoryBooks.B_ID;
-select * from CategoryBooks full join Books on   Books.A_ID=CategoryBooks.B_ID;
+select * from  Books
+right join CategoryBooks on   Books.A_ID=CategoryBooks.B_ID
+right join Categories on   Categories.ID=CategoryBooks.C_ID;
+
+select * from CategoryBooks 
+left join Books on   Books.A_ID=CategoryBooks.B_ID
+left join Categories on   Categories.ID=CategoryBooks.C_ID;
+
+select * from CategoryBooks 
+full join Books on   Books.A_ID=CategoryBooks.B_ID
+full join Categories on   Categories.ID=CategoryBooks.C_ID;
 
